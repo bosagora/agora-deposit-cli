@@ -11,35 +11,27 @@ class BaseChainSetting(NamedTuple):
 
 
 MAINNET = 'mainnet'
-GOERLI = 'goerli'
-PRATER = 'prater'
-SEPOLIA = 'sepolia'
-ZHEJIANG = 'zhejiang'
+TESTNET = 'testnet'
+DEVNET = 'devnet'
 
 # Mainnet setting
 MainnetSetting = BaseChainSetting(
-    NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=bytes.fromhex('00000000'),
-    GENESIS_VALIDATORS_ROOT=bytes.fromhex('4b363db94e286120d76eb905340fdd4e54bfe9f06bf33ff6cf5ad27f511bfe95'))
-# Goerli setting
-GoerliSetting = BaseChainSetting(
-    NETWORK_NAME=GOERLI, GENESIS_FORK_VERSION=bytes.fromhex('00001020'),
-    GENESIS_VALIDATORS_ROOT=bytes.fromhex('043db0d9a83813551ee2f33450d23797757d430911a9320530ad8a0eabc43efb'))
-# Sepolia setting
-SepoliaSetting = BaseChainSetting(
-    NETWORK_NAME=SEPOLIA, GENESIS_FORK_VERSION=bytes.fromhex('90000069'),
-    GENESIS_VALIDATORS_ROOT=bytes.fromhex('d8ea171f3c94aea21ebc42a1ed61052acf3f9209c00e4efbaaddac09ed9b8078'))
-# Zhejiang setting
-ZhejiangSetting = BaseChainSetting(
-    NETWORK_NAME=ZHEJIANG, GENESIS_FORK_VERSION=bytes.fromhex('00000069'),
-    GENESIS_VALIDATORS_ROOT=bytes.fromhex('53a92d8f2bb1d85f62d16a156e6ebcd1bcaba652d0900b2c2f387826f3481f6f'))
+    NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=bytes.fromhex('2F1A0000'),
+    GENESIS_VALIDATORS_ROOT=bytes.fromhex('f9811c9dc8dfe7d7fa1d05b31474c97762c70fc7411b5020e6a57c94d9cd96c8'))
+# Testnet setting
+TestnetSetting = BaseChainSetting(
+    NETWORK_NAME=TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('2F1B0000'),
+    GENESIS_VALIDATORS_ROOT=bytes.fromhex('9b04a1ec90c622132964f35f08e192b30a2c87afb41514c719e3c18ce026cd1b'))
+# Devnet setting
+DevnetSetting = BaseChainSetting(
+    NETWORK_NAME=DEVNET, GENESIS_FORK_VERSION=bytes.fromhex('2F1C0000'),
+    GENESIS_VALIDATORS_ROOT=bytes.fromhex('7f0f27d8765475e82f1df899a7abfcdfabdab857133edf6a86d8df1bb0b2bdcf'))
 
 
 ALL_CHAINS: Dict[str, BaseChainSetting] = {
     MAINNET: MainnetSetting,
-    GOERLI: GoerliSetting,
-    PRATER: GoerliSetting,  # Prater is the old name of the Prater/Goerli testnet
-    SEPOLIA: SepoliaSetting,
-    ZHEJIANG: ZhejiangSetting,
+    TESTNET: TestnetSetting,
+    DEVNET: DevnetSetting,
 }
 
 
