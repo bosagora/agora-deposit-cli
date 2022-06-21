@@ -36,6 +36,8 @@ from staking_deposit.settings import (
     get_chain_setting,
 )
 
+from staking_deposit.utils import config
+
 
 def get_password(text: str) -> str:
     return click.prompt(text, hide_input=True, show_default=False, type=str)
@@ -140,4 +142,5 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
     if not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
     click.echo(load_text(['msg_creation_success']) + folder)
-    click.pause(load_text(['msg_pause']))
+    if not config.non_interactive:
+        click.pause(load_text(['msg_pause']))
