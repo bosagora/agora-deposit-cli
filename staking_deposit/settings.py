@@ -12,6 +12,7 @@ class BaseChainSetting(NamedTuple):
 MAINNET = 'mainnet'
 TESTNET = 'testnet'
 DEVNET = 'devnet'
+LOCALTESTNET = 'localtestnet'
 
 
 # Mainnet setting
@@ -20,12 +21,15 @@ MainnetSetting = BaseChainSetting(NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=byt
 TestnetSetting = BaseChainSetting(NETWORK_NAME=TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('00001000'))
 # Devnet setting
 DevnetSetting = BaseChainSetting(NETWORK_NAME=DEVNET, GENESIS_FORK_VERSION=bytes.fromhex('00002000'))
+# Localtestnet setting
+LocaltestnetSetting = BaseChainSetting(NETWORK_NAME=LOCALTESTNET, GENESIS_FORK_VERSION=bytes.fromhex('00002000'))
 
 
 ALL_CHAINS: Dict[str, BaseChainSetting] = {
     MAINNET: MainnetSetting,
     TESTNET: TestnetSetting,
     DEVNET: DevnetSetting,
+    LOCALTESTNET: LocaltestnetSetting,
 }
 
 
