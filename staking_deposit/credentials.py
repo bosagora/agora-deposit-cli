@@ -35,6 +35,9 @@ from staking_deposit.utils.ssz import (
     SignedBLSToExecutionChange,
 )
 
+from eth_account import Account
+
+from Crypto.Hash import keccak
 
 class WithdrawalType(Enum):
     BLS_WITHDRAWAL = 0
@@ -64,6 +67,12 @@ class Credential:
         self.amount = amount
         self.chain_setting = chain_setting
         self.hex_eth1_withdrawal_address = hex_eth1_withdrawal_address
+        self.secret = self.signing_sk.to_bytes(32, 'big')
+        keccak_hash = keccak.new(digest_bits=256)
+        keccak_hash.update(self.secret)
+        hash_str = keccak_hash.hexdigest()
+        self.secret_eth1 = bytes.fromhex(hash_str)
+
 
     @property
     def signing_pk(self) -> bytes:
@@ -141,19 +150,33 @@ class Credential:
         datum_dict = signed_deposit_datum.as_dict()
         datum_dict.update({'deposit_message_root': self.deposit_message.hash_tree_root})
         datum_dict.update({'deposit_data_root': signed_deposit_datum.hash_tree_root})
+        datum_dict.update({'voter': self.voter})
         datum_dict.update({'fork_version': self.chain_setting.GENESIS_FORK_VERSION})
         datum_dict.update({'network_name': self.chain_setting.NETWORK_NAME})
         datum_dict.update({'deposit_cli_version': DEPOSIT_CLI_VERSION})
         return datum_dict
 
+    def signing_eth1_keystore(self, password: str) -> dict:
+        privatekey = "0x" + self.secret_eth1.hex()
+        encrypted = Account.encrypt(
+            privatekey,
+            password
+        )
+        return encrypted
+
     def signing_keystore(self, password: str) -> Keystore:
-        secret = self.signing_sk.to_bytes(32, 'big')
-        return ScryptKeystore.encrypt(secret=secret, password=password, path=self.signing_key_path)
+        return ScryptKeystore.encrypt(secret=self.secret, password=password, path=self.signing_key_path)
 
     def save_signing_keystore(self, password: str, folder: str) -> str:
         keystore = self.signing_keystore(password)
         filefolder = os.path.join(folder, 'keystore-%s-%i.json' % (keystore.path.replace('/', '_'), time.time()))
         keystore.save(filefolder)
+
+        eth1_keystore = self.signing_eth1_keystore(password)
+        self.voter = eth1_keystore['address']
+        eht1_filefolder = os.path.join(folder, 'keystore-%s-%i-vote.json' % (keystore.path.replace('/', '_'), time.time()))
+        with open(eht1_filefolder, 'w') as f:
+            json.dump(eth1_keystore, f)
         return filefolder
 
     def verify_keystore(self, keystore_filefolder: str, password: str) -> bool:
