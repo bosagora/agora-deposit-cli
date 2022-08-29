@@ -3,7 +3,7 @@ validator_keys
 # Python testing & linting:
 build/
 dist/
-venv/
+venv*/
 *.pytest_cache
 *.hypothesis
 *.mypy_cache
@@ -13,3 +13,5 @@ __pycache__
 .DS_Store
 
 .vscode
+
+.idea
