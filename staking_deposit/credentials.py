@@ -33,6 +33,8 @@ from staking_deposit.utils.ssz import (
     DepositData,
     DepositMessage,
     SignedBLSToExecutionChange,
+    VoterMessage,
+    VoterData
 )
 
 from eth_account import Account
@@ -141,16 +143,45 @@ class Credential:
         return signed_deposit
 
     @property
+    def voter_message(self) -> VoterMessage:
+        if not MIN_DEPOSIT_AMOUNT <= self.amount <= MAX_DEPOSIT_AMOUNT:
+            raise ValidationError(f"{self.amount / ETH2GWEI} ETH deposits are not within the bounds of this cli.")
+
+        hex_string = ('00' * 12) + self.voter
+        voter = bytes.fromhex(hex_string)
+        return VoterMessage(
+            pubkey=self.signing_pk,
+            voter = voter,
+            amount=self.amount,
+        )
+
+    @property
+    def signed_voter(self) -> VoterData:
+        domain = compute_deposit_domain(fork_version=self.chain_setting.GENESIS_FORK_VERSION)
+        signing_root = compute_signing_root(self.voter_message, domain)
+        signed_deposit = VoterData(
+            **self.voter_message.as_dict(),
+            signature=bls.Sign(self.signing_sk, signing_root)
+        )
+        return signed_deposit
+
+    @property
     def deposit_datum_dict(self) -> Dict[str, bytes]:
         """
         Return a single deposit datum for 1 validator including all
         the information needed to verify and process the deposit.
         """
+        signed_voter_datum = self.signed_voter
+        voter_datum_dict = signed_voter_datum.as_dict()
         signed_deposit_datum = self.signed_deposit
         datum_dict = signed_deposit_datum.as_dict()
         datum_dict.update({'deposit_message_root': self.deposit_message.hash_tree_root})
         datum_dict.update({'deposit_data_root': signed_deposit_datum.hash_tree_root})
-        datum_dict.update({'voter': self.voter})
+
+        datum_dict.update({'voter': voter_datum_dict["voter"]})
+        datum_dict.update({'voter_data_root': signed_voter_datum.hash_tree_root})
+        datum_dict.update({'voter_signature': voter_datum_dict["signature"]})
+
         datum_dict.update({'fork_version': self.chain_setting.GENESIS_FORK_VERSION})
         datum_dict.update({'network_name': self.chain_setting.NETWORK_NAME})
         datum_dict.update({'deposit_cli_version': DEPOSIT_CLI_VERSION})
@@ -168,13 +199,14 @@ class Credential:
         return ScryptKeystore.encrypt(secret=self.secret, password=password, path=self.signing_key_path)
 
     def save_signing_keystore(self, password: str, folder: str) -> str:
+        gen_time = time.time()
         keystore = self.signing_keystore(password)
-        filefolder = os.path.join(folder, 'keystore-%s-%i.json' % (keystore.path.replace('/', '_'), time.time()))
+        filefolder = os.path.join(folder, 'keystore-%s-%i.json' % (keystore.path.replace('/', '_'), gen_time))
         keystore.save(filefolder)
 
         eth1_keystore = self.signing_eth1_keystore(password)
         self.voter = eth1_keystore['address']
-        eht1_filefolder = os.path.join(folder, 'keystore-%s-%i-vote.json' % (keystore.path.replace('/', '_'), time.time()))
+        eht1_filefolder = os.path.join(folder, 'keystore-%s-%i-voter.json' % (keystore.path.replace('/', '_'), gen_time))
         with open(eht1_filefolder, 'w') as f:
             json.dump(eth1_keystore, f)
         return filefolder

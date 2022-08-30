@@ -132,3 +132,26 @@ class SignedBLSToExecutionChange(Serializable):
         ('message', BLSToExecutionChange),
         ('signature', bytes96),
     ]
+
+
+class VoterMessage(Serializable):
+    """
+    Ref: https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/beacon-chain.md#depositmessage
+    """
+    fields = [
+        ('pubkey', bytes48),
+        ('voter', bytes32),
+        ('amount', uint64),
+    ]
+
+
+class VoterData(Serializable):
+    """
+    Ref: https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/beacon-chain.md#depositdata
+    """
+    fields = [
+        ('pubkey', bytes48),
+        ('voter', bytes32),
+        ('amount', uint64),
+        ('signature', bytes96)
+    ]
