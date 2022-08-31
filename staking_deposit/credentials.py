@@ -41,6 +41,7 @@ from eth_account import Account
 
 from Crypto.Hash import keccak
 
+
 class WithdrawalType(Enum):
     BLS_WITHDRAWAL = 0
     ETH1_ADDRESS_WITHDRAWAL = 1
@@ -74,7 +75,6 @@ class Credential:
         keccak_hash.update(self.secret)
         hash_str = keccak_hash.hexdigest()
         self.secret_eth1 = bytes.fromhex(hash_str)
-
 
     @property
     def signing_pk(self) -> bytes:
@@ -151,7 +151,7 @@ class Credential:
         voter = bytes.fromhex(hex_string)
         return VoterMessage(
             pubkey=self.signing_pk,
-            voter = voter,
+            voter=voter,
             amount=self.amount,
         )
 
@@ -206,7 +206,8 @@ class Credential:
 
         eth1_keystore = self.signing_eth1_keystore(password)
         self.voter = eth1_keystore['address']
-        eht1_filefolder = os.path.join(folder, 'keystore-%s-%i-voter.json' % (keystore.path.replace('/', '_'), gen_time))
+        eht1_filefolder = \
+            os.path.join(folder, 'keystore-%s-%i-voter.json' % (keystore.path.replace('/', '_'), gen_time))
         with open(eht1_filefolder, 'w') as f:
             json.dump(eth1_keystore, f)
         return filefolder
