@@ -207,9 +207,11 @@ class Credential:
         eth1_keystore = self.signing_eth1_keystore(password)
         self.voter = eth1_keystore['address']
         eht1_filefolder = \
-            os.path.join(folder, 'keystore-%s-%i-voter.json' % (keystore.path.replace('/', '_'), gen_time))
+            os.path.join(folder, 'voter-keystore-%s-%i.json' % (keystore.path.replace('/', '_'), gen_time))
         with open(eht1_filefolder, 'w') as f:
-            json.dump(eth1_keystore, f)
+            json.dump(eth1_keystore, f)s
+        if os.name == 'posix':
+            os.chmod(eht1_filefolder, int('440', 8))  # Read for owner & grou
         return filefolder
 
     def verify_keystore(self, keystore_filefolder: str, password: str) -> bool:
