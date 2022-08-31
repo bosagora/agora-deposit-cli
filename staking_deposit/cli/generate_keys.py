@@ -21,7 +21,7 @@ from staking_deposit.utils.constants import (
     MAX_DEPOSIT_AMOUNT,
     DEFAULT_VALIDATOR_KEYS_FOLDER_NAME,
 )
-from staking_deposit.utils.ascii_art import RHINO_0
+from staking_deposit.utils.ascii_art import BOSAGORA
 from staking_deposit.utils.click import (
     captive_prompt_callback,
     choice_prompt_func,
@@ -89,7 +89,7 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
             param_decls='--chain',
             prompt=choice_prompt_func(
                 lambda: load_text(['chain', 'prompt'], func='generate_keys_arguments_decorator'),
-                
+
                 list(key for key in ALL_CHAINS.keys())
             ),
         ),
@@ -131,7 +131,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
     if not os.path.exists(folder):
         os.mkdir(folder)
     click.clear()
-    click.echo(RHINO_0)
+    click.echo(BOSAGORA)
     click.echo(load_text(['msg_key_creation']))
     credentials = CredentialList.from_mnemonic(
         mnemonic=mnemonic,
