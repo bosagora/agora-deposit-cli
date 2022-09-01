@@ -46,9 +46,17 @@ def check_python_version() -> None:
     help='Disables interactive prompts.',
     hidden=True,
 )
-def cli(ctx: click.Context, language: str, non_interactive: bool) -> None:
+@click.option(
+    '--real_non_interactive',
+    default=False,
+    is_flag=True,
+    help='Disables interactive prompts.',
+    hidden=True,
+)
+def cli(ctx: click.Context, language: str, non_interactive: bool, real_non_interactive: bool) -> None:
     config.language = language
     config.non_interactive = non_interactive  # Remove interactive commands
+    config.real_non_interactive = real_non_interactive  # Remove interactive commands
 
 
 cli.add_command(existing_mnemonic)
