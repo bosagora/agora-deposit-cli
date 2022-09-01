@@ -179,6 +179,7 @@ class Credential:
         datum_dict.update({'deposit_data_root': signed_deposit_datum.hash_tree_root})
 
         datum_dict.update({'voter': voter_datum_dict["voter"]})
+        datum_dict.update({'voter_message_root': self.voter_message.hash_tree_root})
         datum_dict.update({'voter_data_root': signed_voter_datum.hash_tree_root})
         datum_dict.update({'voter_signature': voter_datum_dict["signature"]})
 
