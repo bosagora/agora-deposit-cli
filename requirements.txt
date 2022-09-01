@@ -41,6 +41,9 @@ ssz==0.2.4 \
 eth-typing==2.3.0 \
     --hash=sha256:39cce97f401f082739b19258dfa3355101c64390914c73fe2b90012f443e0dc7 \
     --hash=sha256:b7fa58635c1cb0cbf538b2f5f1e66139575ea4853eac1d6000f0961a4b277422
+eth-account==0.5.7 \
+    --hash=sha256:a82ff2500d7e7a54535ec3d4ea0a58feaf6e94f3ff65ae999f2a508e9b2e1ec1 \
+    --hash=sha256:c86b59ff92f1bb14dea2632c2df657be6a98c450cfe24e2536fb69b6207364e7
 
 # Dependencies for the above
 eth-utils==1.10.0 \
@@ -67,6 +70,34 @@ six==1.16.0 \
 cached-property==1.5.2 \
     --hash=sha256:9fa5755838eecbb2d234c3aa390bd80fbd3ac6b6869109bfc1b499f7bd89a130 \
     --hash=sha256:df4f613cf7ad9a588cc381aaf4a512d26265ecebd5eb9e1ba12f1319eb85a6a0
-eth-account==0.5.4
-    --hash=sha256:c1f6ad81c04858996ca2bd8ee362cb5faab846c20afafd961acd1eac73b40331 \
-    --hash=sha256:0c63d4955acb16a46ec50b2cfb84386e9b029868a68430a918775415560aef57
+
+eth-rlp==0.2.1 \
+    --hash=sha256:cc389ef8d7b6f76a98f90bcdbff1b8684b3a78f53d47e871191b50d4d6aee5a1 \
+    --hash=sha256:f016f980b0ed42ee7650ba6e4e4d3c4e9aa06d8b9c6825a36d3afe5aa0187a8b
+eth-abi==2.1.1 \
+    --hash=sha256:78df5d2758247a8f0766a7cfcea4575bcfe568c34a33e6d05a72c328a9040444 \
+    --hash=sha256:4bb1d87bb6605823379b07f6c02c8af45df01a27cc85bd6abb7cf1446ce7d188
+hexbytes==0.3.0 \
+    --hash=sha256:21c3a5bd00a383097f0369c387174e79839d75c4ccc3a7edda315c9644f4458a \
+    --hash=sha256:afeebfb800f5f15a3ca5bab52e49eabcb4b6dac06ec8ff01a94fdb890c6c0712
+eth-keyfile==0.5.1 \
+    --hash=sha256:70d734af17efdf929a90bb95375f43522be4ed80c3b9e0a8bca575fb11cd1159 \
+    --hash=sha256:939540efb503380bc30d926833e6a12b22c6750de80feef3720d79e5a79de47d
+bitarray==1.2.2 \
+    --hash=sha256:27a69ffcee3b868abab3ce8b17c69e02b63e722d4d64ffd91d659f81e9984954
+rlp==2.0.1 \
+    --hash=sha256:52a57c9f53f03c88b189283734b397314288250cc4a3c4113e9e36e2ac6bdd16 \
+    --hash=sha256:665e8312750b3fc5f7002e656d05b9dcb6e93b6063df40d95c49ad90c19d1f0e
+eth-keys==0.3.4 \
+    --hash=sha256:565bf62179b8143bcbd302a0ec6c49882d9c7678f9e6ab0484a8a5725f5ef10e \
+    --hash=sha256:e5590797f5e2930086c705a6dd1ac14397f74f19bdcd1b5f837475554f354ad8
+parsimonious==0.8.1 \
+    --hash=sha256:b2ad1ae63a2f65bd78f5e0a8ac510a98f3607a43f1db2a8d46636a5d9e4a30c1
+regex==2020.11.13 \
+    --hash=sha256:83d6b356e116ca119db8e7c6fc2983289d87b27b3fac238cfe5dca529d884562
+
+
+
+
+
+
