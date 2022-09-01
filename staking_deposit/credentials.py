@@ -186,7 +186,7 @@ class Credential:
         datum_dict.update({'deposit_cli_version': DEPOSIT_CLI_VERSION})
         return datum_dict
 
-    def signing_eth1_keystore(self, password: str) -> dict:
+    def signing_eth1_keystore(self, password: str) -> Dict[str, str]:
         privatekey = "0x" + self.secret_eth1.hex()
         encrypted = Account.encrypt(
             privatekey,
