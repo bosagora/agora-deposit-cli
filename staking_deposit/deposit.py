@@ -53,10 +53,18 @@ def check_python_version() -> None:
     help='Disables interactive prompts.',
     hidden=True,
 )
-def cli(ctx: click.Context, language: str, non_interactive: bool, real_non_interactive: bool) -> None:
+@click.option(
+    '--skip_verify',
+    default=False,
+    is_flag=True,
+    help='Disables verification.',
+    hidden=True,
+)
+def cli(ctx: click.Context, language: str, non_interactive: bool, real_non_interactive: bool, skip_verify: bool) -> None:
     config.language = language
     config.non_interactive = non_interactive or real_non_interactive  # Remove interactive commands
     config.real_non_interactive = real_non_interactive  # Remove interactive commands
+    config.skip_verify = skip_verify
 
 
 cli.add_command(existing_mnemonic)

@@ -37,6 +37,7 @@ from staking_deposit.settings import (
     get_chain_setting,
 )
 
+from staking_deposit.utils import config
 
 def get_password(text: str) -> str:
     return click.prompt(text, hide_input=True, show_default=False, type=str)
@@ -142,9 +143,9 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
     )
     keystore_filefolders = credentials.export_keystores(password=keystore_password, folder=folder)
     deposits_file = credentials.export_deposit_data_json(folder=folder)
-    if not credentials.verify_keystores(keystore_filefolders=keystore_filefolders, password=keystore_password):
+    if not config.skip_verify and not credentials.verify_keystores(keystore_filefolders=keystore_filefolders, password=keystore_password):
         raise ValidationError(load_text(['err_verify_keystores']))
-    if not verify_deposit_data_json(deposits_file, credentials.credentials):
+    if not config.skip_verify and not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
     click.echo(load_text(['msg_creation_success']) + folder)
     click.pause(load_text(['msg_pause']))
