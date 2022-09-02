@@ -56,7 +56,7 @@ def check_python_version() -> None:
 )
 def cli(ctx: click.Context, language: str, non_interactive: bool, real_non_interactive: bool) -> None:
     config.language = language
-    config.non_interactive = non_interactive or real_non_interactive # Remove interactive commands
+    config.non_interactive = non_interactive or real_non_interactive  # Remove interactive commands
     config.real_non_interactive = real_non_interactive  # Remove interactive commands
 
 
