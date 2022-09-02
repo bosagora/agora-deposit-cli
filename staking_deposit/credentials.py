@@ -37,7 +37,7 @@ from staking_deposit.utils.ssz import (
     VoterData
 )
 
-from eth_account import Account
+from eth_keyfile import create_keyfile_json
 
 from Crypto.Hash import keccak
 
@@ -189,11 +189,8 @@ class Credential:
         return datum_dict
 
     def signing_eth1_keystore(self, password: str) -> Dict[str, str]:
-        privatekey = "0x" + self.secret_eth1.hex()
-        encrypted = Account.encrypt(
-            privatekey,
-            password
-        )
+        b_password = bytes(password, 'utf-8')
+        encrypted = create_keyfile_json(self.secret_eth1, b_password)
         return encrypted
 
     def signing_keystore(self, password: str) -> Keystore:
