@@ -16,11 +16,11 @@ LOCALTESTNET = 'localtestnet'
 
 
 # Mainnet setting
-MainnetSetting = BaseChainSetting(NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=bytes.fromhex('00000000'))
+MainnetSetting = BaseChainSetting(NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=bytes.fromhex('2F1A0000'))
 # Testnet setting
-TestnetSetting = BaseChainSetting(NETWORK_NAME=TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('00001000'))
+TestnetSetting = BaseChainSetting(NETWORK_NAME=TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('2F1B0000'))
 # Devnet setting
-DevnetSetting = BaseChainSetting(NETWORK_NAME=DEVNET, GENESIS_FORK_VERSION=bytes.fromhex('00002000'))
+DevnetSetting = BaseChainSetting(NETWORK_NAME=DEVNET, GENESIS_FORK_VERSION=bytes.fromhex('2F1C0000'))
 # Localtestnet setting
 LocaltestnetSetting = BaseChainSetting(NETWORK_NAME=LOCALTESTNET, GENESIS_FORK_VERSION=bytes.fromhex('00002000'))
 
