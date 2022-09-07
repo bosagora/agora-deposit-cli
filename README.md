@@ -96,7 +96,7 @@ On Unix-based systems, keystores and the `deposit_data*.json` have `440`/`-r--r-
 
 ##### Step 1. Installation
 
-See [releases page](https://github.com/ethereum/staking-deposit-cli/releases) to download and decompress the corresponding binary files.
+See [releases page](https://github.com/zeroone-boa/staking-deposit-cli/releases) to download and decompress the corresponding binary files.
 
 ##### Step 2. Create keys and `deposit_data-*.json`
 
