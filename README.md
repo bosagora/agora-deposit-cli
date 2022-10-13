@@ -1,4 +1,4 @@
-# staking-deposit-cli
+# agora-deposit-cli
 
 [![GitPOAP Badge](https://public-api.gitpoap.io/v1/repo/ethereum/staking-deposit-cli/badge)](https://www.gitpoap.io/gh/ethereum/staking-deposit-cli)
 
