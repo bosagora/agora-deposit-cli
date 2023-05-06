@@ -70,7 +70,7 @@
 
 ## Introduction
 
-This repository was forked from [ethereum/staking-deposit-cli](https://github.com/ethereum/staking-deposit-cli)
+This repository was forked from [bosagora/agora-deposit-cli](https://github.com/bosagora/agora-deposit-cli)
 
 `deposit-cli` is a tool for creating [EIP-2335 format](https://eips.ethereum.org/EIPS/eip-2335) BLS12-381 keystores and a corresponding `deposit_data*.json` file for [Agora Staking](https://agora-staking.bosagora.org).
 
@@ -339,19 +339,19 @@ make build_docker
 Run the following command to enter the interactive CLI:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys ethereum/staking-deposit-cli
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys bosagora/agora-deposit-cli:agora
 ```
 
 You can also run the tool with optional arguments:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys ethereum/staking-deposit-cli new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --folder=<YOUR_FOLDER_PATH>
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys bosagora/agora-deposit-cli:agora new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --folder=<YOUR_FOLDER_PATH>
 ```
 
 Example for 1 validator on the [Prater testnet](https://prater.launchpad.ethereum.org/) using english:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys ethereum/staking-deposit-cli new-mnemonic --num_validators=1 --mnemonic_language=english --chain=prater
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys bosagora/agora-deposit-cli:agora new-mnemonic --num_validators=1 --mnemonic_language=english --chain=prater
 ```
 
 ###### Arguments
@@ -368,7 +368,7 @@ See [here](#successful-message)
 
 ##### Step 1. Installation
 
-See [releases page](https://github.com/ethereum/staking-deposit-cli/releases) to download and decompress the corresponding binary files.
+See [releases page](https://github.com/bosagora/agora-deposit-cli/releases) to download and decompress the corresponding binary files.
 
 ##### Step 2. Create keys and `deposit_data-*.json`
 
