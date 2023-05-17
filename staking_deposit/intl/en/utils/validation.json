@@ -12,9 +12,9 @@
         "err_invalid_choice": "That is not one of the valid choices. Please retype your choice."
     },
     "validate_eth1_withdrawal_address": {
-        "err_invalid_ECDSA_hex_addr": "The given Eth1 address is not in hexadecimal encoded form.",
-        "err_invalid_ECDSA_hex_addr_checksum": "The given Eth1 address is not in checksum form.",
-        "msg_ECDSA_hex_addr_withdrawal": "**[Warning] you are setting an Eth1 address as your withdrawal address. Please ensure that you have control over this address.**"
+        "err_invalid_ECDSA_hex_addr": "The given BOA address is not in hexadecimal encoded form.",
+        "err_invalid_ECDSA_hex_addr_checksum": "The given BOA address is not in checksum form.",
+        "msg_ECDSA_hex_addr_withdrawal": "**[Warning] you are setting an BOA address as your withdrawal address. Please ensure that you have control over this address.**"
     },
     "validate_bls_withdrawal_credentials": {
         "err_is_already_eth1_form": "The given withdrawal credentials is already in ETH1_ADDRESS_WITHDRAWAL_PREFIX form. Have you already set the EL (eth1) withdrawal addresss?",
