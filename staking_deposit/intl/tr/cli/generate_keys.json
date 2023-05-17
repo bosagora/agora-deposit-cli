@@ -8,17 +8,17 @@
             "help": "Anahtar depoları ve depozitolar için dizin yolu. Varsayılan olarak `./validator_keys` yolunu gösterir."
         },
         "chain": {
-            "help": "Hedeflenen Ethereum PoS ağının ismi. Depozito olarak ETH kullanıyorsanız \"mainnet\" kullanın",
+            "help": "Hedeflenen BOSagora-cl ağının ismi. Depozito olarak BOA kullanıyorsanız \"mainnet\" kullanın",
             "prompt": "Lütfen (mainnet veya testnet) ağ/zincir adını seçin"
         },
         "keystore_password": {
-            "help": "Anahtar depolarınızı koruyacak şifre. Ethereum onaylayıcılarınızı kurarken bu şifreyi tekrar girmeniz gerekecek. (Bu parametreyi kullanmamanız ve size sorulduğunda ipucu kelimelerini girmeniz tavsiye edilir, aksi taktirde şifreniz komut satırı geçmişinde gözükecektir.)",
-            "prompt": "Onaylayıcı anahtar depolarınızı koruyan bir şifre oluşturun. Ethereum onaylayıcılarınızı kurarken bu şifreyi tekrar girmeniz gerekecek.",
+            "help": "Anahtar depolarınızı koruyacak şifre. BOSagora onaylayıcılarınızı kurarken bu şifreyi tekrar girmeniz gerekecek. (Bu parametreyi kullanmamanız ve size sorulduğunda ipucu kelimelerini girmeniz tavsiye edilir, aksi taktirde şifreniz komut satırı geçmişinde gözükecektir.)",
+            "prompt": "Onaylayıcı anahtar depolarınızı koruyan bir şifre oluşturun. BOSagora onaylayıcılarınızı kurarken bu şifreyi tekrar girmeniz gerekecek.",
             "confirm": "Anahtar deposu şifrenizi onaylamak için tekrar girin",
             "mismatch": "Hata: girilen değerler eşleşmiyor. Tekrar deneyin."
         },
         "eth1_withdrawal_address": {
-            "help": "Eğer bu alan girilmiş ve geçerliyse, verilen Eth1 adresi varlık çekme adresi olarak kullanılacaktır. Aksi taktirde, ipucu kelimelerinden üretilmiş bir genel anahtar kullanılır."
+            "help": "Eğer bu alan girilmiş ve geçerliyse, verilen BOA adresi varlık çekme adresi olarak kullanılacaktır. Aksi taktirde, ipucu kelimelerinden üretilmiş bir genel anahtar kullanılır."
         }
     },
     "generate_keys": {
