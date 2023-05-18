@@ -81,7 +81,7 @@ def test_new_mnemonic_eth1_address_withdrawal(monkeypatch) -> None:
         '--language', 'english',
         'new-mnemonic',
         '--folder', my_folder_path,
-        '--eth1_withdrawal_address', eth1_withdrawal_address,
+        '--withdrawal_address', eth1_withdrawal_address,
     ]
     result = runner.invoke(cli, arguments, input=data)
     assert result.exit_code == 0
@@ -142,7 +142,7 @@ def test_new_mnemonic_eth1_address_withdrawal_bad_checksum(monkeypatch) -> None:
         '--language', 'english',
         'new-mnemonic',
         '--folder', my_folder_path,
-        '--eth1_withdrawal_address', wrong_eth1_withdrawal_address,
+        '--withdrawal_address', wrong_eth1_withdrawal_address,
     ]
     result = runner.invoke(cli, arguments, input=data)
     assert result.exit_code == 0
@@ -255,7 +255,7 @@ def test_new_mnemonic_eth1_address_withdrawal_double_params(monkeypatch) -> None
         'new-mnemonic',
         '--folder', my_folder_path,
         '--execution_address', execution_address,
-        '--eth1_withdrawal_address', execution_address,  # double param
+        '--withdrawal_address', execution_address,  # double param
     ]
     result = runner.invoke(cli, arguments, input=data)
 
