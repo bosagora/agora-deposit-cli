@@ -103,7 +103,7 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
             ),
             default=None,
             help=lambda: load_text(['arg_execution_address', 'help'], func='generate_keys_arguments_decorator'),
-            param_decls=['--execution_address', '--eth1_withdrawal_address'],
+            param_decls=['--execution_address', '--withdrawal_address'],
         ),
     ]
     for decorator in reversed(decorators):
